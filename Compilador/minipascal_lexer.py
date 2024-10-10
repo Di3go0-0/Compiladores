@@ -68,6 +68,7 @@ tokens = (
     'EQUAL',
     'LESS',
     'GREATER',
+    'CIRCUMFLEX'
     'EXCLAMATION',
     'COLON',
     'SEMICOLON',
@@ -109,6 +110,7 @@ t_MODULUS = r'%'
 t_EQUAL  = r'='
 t_LESS   = r'<'
 t_GREATER = r'>'
+t_CIRCUMFLEX = r'\^'
 t_EXCLAMATION = r'!'
 t_COLON   = r':'
 t_SEMICOLON = ';'
