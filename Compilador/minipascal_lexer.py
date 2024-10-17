@@ -68,7 +68,7 @@ tokens = (
     'EQUAL',
     'LESS',
     'GREATER',
-    'CIRCUMFLEX'
+    'CIRCUMFLEX',
     'EXCLAMATION',
     'COLON',
     'SEMICOLON',
@@ -378,7 +378,7 @@ def t_XOR(t):
     return t
 
 def t_INVALIDID(t):
-    r'[^_a-zA-Z]([a-zA-Z]|_|\d)+'
+    r'[0-9]+([a-zA-Z]|_)+([a-zA-Z'
     print(f"lexical error: invalid identfiier starting with a digit")
     t.lexer.skip(len(t.value))
 
