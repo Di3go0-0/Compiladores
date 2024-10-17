@@ -68,6 +68,7 @@ tokens = (
     'EQUAL',
     'LESS',
     'GREATER',
+    'CIRCUMFLEX'
     'EXCLAMATION',
     'COLON',
     'SEMICOLON',
@@ -97,6 +98,7 @@ tokens = (
     # Others   
     'ID', 
     'NUMBER',
+    'CONSTSTRING',
 )
 
 # Regular expressions rules for a simple tokens 
@@ -108,6 +110,7 @@ t_MODULUS = r'%'
 t_EQUAL  = r'='
 t_LESS   = r'<'
 t_GREATER = r'>'
+t_CIRCUMFLEX = r'\^'
 t_EXCLAMATION = r'!'
 t_COLON   = r':'
 t_SEMICOLON = ';'
@@ -125,6 +128,11 @@ t_HASHTAG = r'\#'
 t_DIACRITIC = r'~'
 t_DOLLAR = r'\$'
 t_SQUOTE = r'\''
+#t_STRING = r'(\".*?\")'
+
+def t_CONSTSTRING(t):
+    r'(\".*?\")|(\'.*?\')'
+    return t
 
 def t_DEQUAL(t):
 	r'<>'
@@ -369,6 +377,12 @@ def t_XOR(t):
     r'(X|x)(O|o)(R|r)'
     return t
 
+def t_INVALIDID(t):
+    r'[^_a-zA-Z]([a-zA-Z]|_|\d)+'
+    print(f"lexical error: invalid identfiier starting with a digit")
+    t.lexer.skip(len(t.value))
+
+
 def t_ID(t):
     r'([a-zA-Z]|_)([a-zA-Z]|_|\d)*'
     return t
@@ -395,6 +409,7 @@ def t_comments_2(t):
 def t_error(t):
     print ("Lexical error: " + str(t.value[0]))
     t.lexer.skip(1)
+
     
 t_ignore = ' \t'
 
